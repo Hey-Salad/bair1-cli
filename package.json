@@ -1,0 +1,24 @@
+{
+  "name": "@heysalad/bair1-cli",
+  "version": "1.0.0",
+  "description": "CLI tool for querying Bair1 air quality sensor data",
+  "type": "module",
+  "bin": {
+    "bair1": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "@types/node": "^22.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT"
+}
