@@ -63,7 +63,7 @@ async function apiFetch(path: string, params?: Record<string, string>): Promise<
     Accept: "application/json",
   };
   if (config.apiKey) {
-    headers["Authorization"] = `Bearer ${config.apiKey}`;
+    headers["x-api-key"] = config.apiKey;
   }
 
   const res = await fetch(url.toString(), { headers });
@@ -205,7 +205,7 @@ program
         limit: opts.limit,
       });
 
-      const readings = (Array.isArray(data) ? data : (data as Record<string, unknown>).readings ?? []) as Record<string, unknown>[];
+      const readings = (Array.isArray(data) ? data : (data as Record<string, unknown>).data ?? (data as Record<string, unknown>).readings ?? []) as Record<string, unknown>[];
 
       if (readings.length === 0) {
         console.log(`${YELLOW}No readings found for device ${opts.device}.${RESET}`);
@@ -242,7 +242,7 @@ program
   .action(async () => {
     try {
       const data = await apiFetch("/api/v1/devices");
-      const devices = (Array.isArray(data) ? data : (data as Record<string, unknown>).devices ?? []) as Record<string, unknown>[];
+      const devices = (Array.isArray(data) ? data : (data as Record<string, unknown>).data ?? (data as Record<string, unknown>).devices ?? []) as Record<string, unknown>[];
 
       if (devices.length === 0) {
         console.log(`${YELLOW}No devices found.${RESET}`);
@@ -252,9 +252,8 @@ program
       console.log(`\n${BOLD}${CYAN}  Bair1 Devices${RESET}\n`);
 
       printTable(devices, [
-        { key: "id", label: "ID", width: 12 },
-        { key: "name", label: "Name", width: 24 },
-        { key: "location", label: "Location", width: 24 },
+        { key: "deviceId", label: "ID", width: 22 },
+        { key: "name", label: "Name", width: 28 },
         { key: "status", label: "Status", width: 10 },
       ]);
     } catch (err) {
