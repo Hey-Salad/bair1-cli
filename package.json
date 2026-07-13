@@ -1,14 +1,32 @@
 {
-  "name": "@heysalad/bair1-cli",
+  "name": "@heysalad/bair1",
   "version": "1.0.0",
-  "description": "CLI tool for querying Bair1 air quality sensor data",
+  "description": "JavaScript SDK and CLI for Bair1 air quality sensor data",
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
   "bin": {
-    "bair1": "./dist/index.js"
+    "bair1": "./dist/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hey-Salad/bair1-cli.git"
   },
   "scripts": {
     "build": "tsc",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "prepack": "npm run build"
   },
   "dependencies": {
     "commander": "^12.1.0"
