@@ -17,11 +17,11 @@
     }
   },
   "bin": {
-    "bair1": "./dist/cli.js"
+    "bair1": "dist/cli.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Hey-Salad/bair1-cli.git"
+    "url": "git+https://github.com/Hey-Salad/bair1-cli.git"
   },
   "scripts": {
     "build": "tsc",
